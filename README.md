@@ -6,8 +6,11 @@ Este é um projeto fictício. A empresa, o contexto e as perguntas de negócios 
 
 ​						                                  																																		*A logo criada é ficticia.* 
 
-O projeto foi colocado em produção através do Heroku, para acessar clique -----> [link para app no Heroku](https://house-rocket-project.herokuapp.com/) <-----
+O projeto foi colocado em produção através do Heroku:
 
+[<img alt="Heroku" src="https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white"/>](https://lujanrr-house-rocket.herokuapp.com)
+
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 
 # 1. Descrição 
