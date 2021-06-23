@@ -29,7 +29,7 @@ if options == 'Home':
     st.write('Este é um projeto fictício. A empresa, o contexto e as perguntas de negócios não são reais. Este portfólio está seguindo as recomendações do blog Seja um Data Scientist, para mais informações clique no link a seguir.')
     st.markdown(link, unsafe_allow_html=True)
     st.header('Descrição')
-    st.write('House Rocket é uma imobiliaria que procura novos imóveis para seu catalogo, fomentada pela alta e baixa recorrente do mercado imobiliario a empresa busca novas oportunidades de compra de imóveis. A empresa procurou um Cientista de dados para ajudar a encontrar as melhores oportunidades de negócio, ou seja, maximizar a receita. A melhor estratégia é a compra de casas em condições regulares quando estiverem em baixa no mercado e revende-las quando o mercado estiver em alta. Os atributos das casas as tornam mais ou menos atrativas, influenciando a atratividade dos imóveis e, consequentemente, o seu preço. As questões a serem respondidas são:')
+    st.write('House Rocket é uma empresa do ramo imobiliario que procura novos imóveis para seu catalogo, fomentada pela alta e baixa recorrente do mercado imobiliario a empresa busca novas oportunidades de compra de imóveis. A empresa procurou um Cientista de dados para ajudar a encontrar as melhores oportunidades de negócio, ou seja, maximizar a receita. A melhor estratégia é a compra de casas em condições regulares quando estiverem em baixa no mercado e revende-las quando o mercado estiver em alta. Os atributos das casas as tornam mais ou menos atrativas, influenciando a atratividade dos imóveis e, consequentemente, o seu preço. As questões a serem respondidas são:')
     st.write('1. Quais casas a House Rocket deveria comprar e por qual preço de compra?')
     st.write('2. Uma vez a casa em posse da empresa, qual o melhor momento para vendê-las e qual seria o preço da venda?')
     st.header('Premissas do Negócio')
@@ -59,8 +59,8 @@ if options == 'Home':
     st.write('- Streamlit')
     st.write('- Heroku') 
     st.header('Conclusão')
-    st.write('Os objetivos foram alcançados. Os imóveis foram agrupados por região (zipcode). Considerando o preço do imóvel e a condição minima como regular(3 - 5) foi calculado a mediana do preço. Ao total 10505 imóveis foram declarados como Imóveis com alto potencial de revenda, dentre estes foram sugeridos os 20 mais lucrativos para a empresa comprar. Os imóveis aptos para compra foram agrupados pela localidade e a estação do ano. A mediana foi calculada e imóveis com preço abaixo da mediana teve um acréscimo de 10% em seu valor, enquanto imóveis com preço acima da mediana teve um acréscimo de 30% acima do seu valor.')
-    st.header('Proiximos passos')
+    st.write('Os objetivos foram alcançados. Os imóveis foram agrupados por região (zipcode). Considerando o preço do imóvel e a condição minima como regular (3 - 5) foi calculado a mediana do preço. Ao total 10505 imóveis foram declarados como Imóveis com alto potencial de revenda, dentre estes foram sugeridos os 20 mais lucrativos para a empresa comprar. Os imóveis aptos para compra foram agrupados pela localidade e a estação do ano. A mediana foi calculada e imóveis com preço abaixo da mediana teve um acréscimo de 10% em seu valor, enquanto imóveis com preço acima da mediana teve um acréscimo de 30% acima do seu valor.')
+    st.header('Proximos passos')
     st.write('Seria interessante analisar o potencial de lucratividade atraves de reformas para alguns imóveis baseados em sua localização, comprando imoveis em  condições ruins, reformando-os e revendendo-os com finalidade de avaliar qual tipo de reforma retornaria lucro para a empresa. Outra ideia seria a possibilidade de prever a valorização do imóvel, tirando o limitando de 4 estações para os valores dos imóveis, possibilitando uma margem de lucro maior.')
     
     st.markdown("""
@@ -118,7 +118,7 @@ def overview_data(data):
         f_attributes=st.sidebar.multiselect('Selecione os atributos desejados', data.columns)
         f_zipcode=st.sidebar.multiselect('Selecione o zipcode desejado', data['zipcode'].unique())
         st.markdown("<h1 style='text-align: center; color: black;'>House Rocket Company</h1>", unsafe_allow_html=True)
-        st.write('Esta seção é destinada para olhar estatisticamente o conjunto de dados, analisando inicialmente algumas métricas para o entendimento do negócio.')
+        st.write('Esta seção é destinada para olhar estatísticamente o conjunto de dados, analisando inicialmente algumas métricas para o entendimento do negócio.')
     #attributes+zipcode= selecionar colunas e linhas
     #attributes= selecionar colunas
     #zipcode= selecionar linhas
@@ -214,7 +214,7 @@ def portfolio_density(data,geofile):
     # Densidade de portfólio
     #====================================
         st.markdown("<h1 style='text-align: center; color: black;'>House Rocket Company</h1>", unsafe_allow_html=True)
-        st.write('Esta seção é destinada a visualização geográfica do conjunto de dados, fornecendo um olhar sobre a densidade do portfólio e densidade de preço do portfólio.')
+        st.write('Esta seção é destinada a visualização geográfica do conjunto de dados, fornecendo um olhar sobre a densidade do portfólio e a densidade de preço do portfólio.')
         st.title('Region Overview')
         # c1,c2 = st.beta_columns((2))
         st.header('Portfólio Density')
@@ -428,13 +428,13 @@ def  hipoteses (data):
         c3,c4 = st.beta_columns(2)
 
         c3.subheader('Hipótese 3: Imóveis sem porão possuem área total 40% maiores que os imóveis com porão.')
-        c3.write(' - Falsa, como observado imóveis sem porão são 12% maiores que imóveis com porão')
+        c3.write(' - Verdadeira, como observado imóveis sem porão são em édia 89% maiores que imóveis com porão.')
         data['porao'] = data['sqft_basement'].apply(lambda x: 'nao' if x == 0
                                                       else 'sim')
 
-        h3 = data[['porao', 'sqft_lot', 'price']].groupby('porao').sum().reset_index()
-        fig3 = px.bar(h3, x='porao', y = 'price', color = 'porao', labels = {'price': 'Preço',
-                                                                             'sqft_lot': 'Área Total'},
+        h3 = data[['porao', 'sqm_lot', 'price']].groupby('porao').sum().reset_index()
+        fig3 = px.bar(h3, x='porao', y = 'sqm_lot', color = 'porao', labels = {'price': 'Preço',
+                                                                             'sqm_lot': 'Área Total'},
                                                                             template= 'simple_white')
         fig3.update_layout(showlegend = False)
         c3.plotly_chart(fig3, use_container_width= True)
@@ -442,7 +442,7 @@ def  hipoteses (data):
         #=========================================
         # ========== H4 ==========
         #==========================================
-        c4.subheader('Hipótese 4: Imóveis que nunca sofreram reformadas são em média 30% mais baratos')
+        c4.subheader('Hipótese 4: Imóveis que nunca sofreram reformas são em média 30% mais baratos')
         c4.write(' - Verdadeira, como observado imóveis que nunca sofreram reformas são 30.21% mais baratos que os imóveis que ja sofreram algum tipo de reforma.')
         data['renovacao'] = data['yr_renovated'].apply(lambda x: 'sim' if x > 0 else
                                                          'nao'   )
@@ -683,23 +683,25 @@ def house_rocket(df_buy):
         st.subheader('Uma vez o imóvel comprado, qual o melhor momento para vende-lo? e por qual preço?')   
         st.write('Para a venda dos imóveis comprados, foi analisado o comportamento dos preços para o ano anterior, buscando qual seria a melhor estação do ano para vender o imóvel, para isso foi realizado a mediana dos preços para cada região durante cada estação do ano, diante disso se o preço pelo qual o imóvel foi comprado fosse menor que a mediana da estação o imóvel seria vendido pelo preço que foi comprado +30%, e caso o preço de aquisição fosse maior que a mediana de estação o valor de venda seria o valor da compra + 10%.')
         st.write('Ao final foi disponibilizado uma tabela para a equipe de negócios, com todos os dados referentes a venda dos imóveis, incluindo o lucro esperado em quais estações vender o determinado imóvel.')
-        if st.checkbox('Mostrar a tabela de vendas'):
-            df_buy=df_buy.drop(['month','status'],axis=1) 
-            info={'id':'Número de identificação do imóvel','date':'Data da compra','season':'Estação da compra do imóvel','zipcode':'Zipcode do ímóvel','buy_price':'Preço pelo qual o imóvel foi comprado','fall_price':'Preço para se vender o imóvel no outono','spring_price':'Preço para se vender imóvel na primavera','summer_price':'Preço para se vender o imóvel no verão','winter_price':'Preço para se vender o imóvel no inverno','best_price':'Melhor preço para se vender o imóvel dentre todas as estações','Profit':'Lucro esperado pela venda do imóvel','best_season_to_sell':'As melhores estações para se vender o imóvel'}
-            info=pd.Series(info).to_frame('Explicação dos Atributos')
-            st.table(info)
-            st.dataframe(df_buy)
+        # if st.checkbox('Mostrar a tabela de vendas'):
+        df_buy=df_buy.drop(['month','status'],axis=1) 
+        info={'id':'Número de identificação do imóvel','date':'Data da compra','season':'Estação da compra do imóvel','zipcode':'Zipcode do ímóvel','buy_price':'Preço pelo qual o imóvel foi comprado','fall_price':'Preço para se vender o imóvel no outono','spring_price':'Preço para se vender imóvel na primavera','summer_price':'Preço para se vender o imóvel no verão','winter_price':'Preço para se vender o imóvel no inverno','best_price':'Melhor preço para se vender o imóvel dentre todas as estações','Profit':'Lucro esperado pela venda do imóvel','best_season_to_sell':'As melhores estações para se vender o imóvel'}
+        info=pd.Series(info).to_frame('Explicação dos Atributos')
+        st.table(info)
+        st.header('Tabela de venda de imóveis.')
+        st.dataframe(df_buy)
         
         st.markdown("<h1 style='text-align: center; color: black;'> Sugestão de compra de imóveis</h1>", unsafe_allow_html=True)
-        st.write('Após a analise de melhor periodo para vende o Cientista de dados elencou os 20 imóveis mais lucrativos e sugeriu que a empresa devesse adquiri-los.')
+        st.write('Após a analise de melhor periodo para venda o Cientista de dados elencou os 20 imóveis mais lucrativos e sugeriu que a empresa devesse adquiri-los.')
         df=df_buy.sort_values('Profit',ascending=0).reset_index()
         df=df_buy.head(20)
         dic={"Investimento Inicial":df['buy_price'].sum(),'Lucro Esperado':df['Profit'].sum()}
         capital=pd.Series(dic).to_frame('Valor USD')
         st.table(capital)
-        if st.checkbox('Mostrar a tabela de imóveis sugeridos'):
-            df=df.sort_values('Profit',ascending=0).reset_index()
-            st.dataframe(df)
+        # if st.checkbox('Mostrar a tabela de imóveis sugeridos'):
+        df=df.sort_values('Profit',ascending=0).reset_index()
+        st.header('Tabela de imóveis sugeridos para a compra.')
+        st.dataframe(df)
             
         return None
     
@@ -712,8 +714,7 @@ if __name__ =='__main__':
     data = get_data(path)
     data1 = get_data(path)
     geofile = get_geofile(url)
-    df_buy=get_df_buy(path2)
-    
+    df_buy=get_df_buy(path2)   
     # Transformation
     data = set_feature(data)
     overview_data(data)
@@ -723,8 +724,7 @@ if __name__ =='__main__':
     data = get_data(path)
     # business_question(data)
     hipoteses (data)
-    data = get_data(path)
-    
+    data = get_data(path) 
     house_rocket(df_buy)
     # Load
 
