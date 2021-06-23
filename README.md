@@ -111,7 +111,7 @@ O que as análises das hipóteses dizem sobre o negócio.
 | ------------------------------------------------------------ | ---------- | ------------------------------------------------------------ |
 | **H1** -Imóveis com vista para a água são em média 30% mais caros | Verdadeira | Investir em imóveis com vista para água                      |
 | **H2** - Imóveis com data de construção menor que 1955 são em média 50% mais baratos | Falsa      | Investir em imóveis independente da data de construção       |
-| **H3** - Imóveis sem porão com maior área total são 40% mais caros | Verdadeira | Investir em imóveis sem porão                                |
+| **H3** - Imóveis sem porão são 40% maiores do que imóveis com porão | Verdadeira | Investir em imóveis sem porão                                |
 | **H4** - Imóveis que nunca foram reformados são em média 20% mais baratos | Verdadeira | Investir em imóveis não reformados e reformá-los para venda  |
 | **H5** - Imóveis com mais banheiros são em média 15% mais caros | Falsa      | Investir em imóveis de 3-5 banheiros                         |
 | **H6** - Imóveis com mais quartos são em média 15% mais caros   | Falsa      | Investir em imóveis com 6-9 quartos                  |
